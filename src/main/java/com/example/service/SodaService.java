@@ -11,7 +11,11 @@ public class SodaService {
 
     private final List<Soda> sodaList = new ArrayList<>();
 
-    private Soda createSoda(String soda) {
-        return new Soda(soda);
+    public void add(Soda soda) {
+        sodaList.add(soda);
+    }
+
+    public List<Soda> getList() {
+        return sodaList;
     }
 }
