@@ -19,8 +19,7 @@
         <release.version>17</release.version>
         <micronaut.version>3.4.2</micronaut.version>
         <exec.mainClass>com.example.Application</exec.mainClass>
-        <micronaut.data.version>3.3.0</micronaut.data.version>
-        <micronaut.runtime>tomcat</micronaut.runtime>
+        <micronaut.runtime>netty</micronaut.runtime>
     </properties>
 
     <repositories>
@@ -63,6 +62,11 @@
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-http-server-netty</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
             <artifactId>micronaut-jackson-databind</artifactId>
             <scope>compile</scope>
         </dependency>
@@ -72,23 +76,18 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.beanvalidation</groupId>
-            <artifactId>micronaut-hibernate-validator</artifactId>
+            <groupId>io.micronaut.mongodb</groupId>
+            <artifactId>micronaut-mongo-reactive</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.data</groupId>
-            <artifactId>micronaut-data-mongodb</artifactId>
+            <groupId>io.micronaut.reactor</groupId>
+            <artifactId>micronaut-reactor</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.graphql</groupId>
-            <artifactId>micronaut-graphql</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.servlet</groupId>
-            <artifactId>micronaut-http-server-tomcat</artifactId>
+            <groupId>io.micronaut.reactor</groupId>
+            <artifactId>micronaut-reactor-http-client</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -97,27 +96,24 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.17.2</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.17.2</version>
-            <scope>runtime</scope>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-reactivestreams</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mongodb</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -126,6 +122,7 @@
             <plugin>
                 <groupId>io.micronaut.build</groupId>
                 <artifactId>micronaut-maven-plugin</artifactId>
+                <version>3.2.3</version>
             </plugin>
 
             <plugin>
@@ -141,20 +138,10 @@
                             <artifactId>micronaut-http-validation</artifactId>
                             <version>${micronaut.version}</version>
                         </path>
-                        <path>
-                            <groupId>io.micronaut.data</groupId>
-                            <artifactId>micronaut-data-processor</artifactId>
-                            <version>${micronaut.data.version}</version>
-                        </path>
-                        <path>
-                            <groupId>io.micronaut.data</groupId>
-                            <artifactId>micronaut-data-document-processor</artifactId>
-                            <version>${micronaut.data.version}</version>
-                        </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
-                        <arg>-Amicronaut.processing.group=com.example</arg>
-                        <arg>-Amicronaut.processing.module=webservices_labb2</arg>
+                        <arg>-Amicronaut.processing.group=example.micronaut</arg>
+                        <arg>-Amicronaut.processing.module=micronautguide</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
