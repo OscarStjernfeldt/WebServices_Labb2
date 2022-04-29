@@ -4,7 +4,7 @@ micronaut:
 
 #MongoDB:
 mongodb:
-  uri: mongodb://mongoadmin:secret@${MONGO_HOST:localhost}:${MONGO_PORT:27017}
+  uri: mongodb://${MONGO_USERNAME:mongoadmin}:${MONGO_PASSWORD:secret}@${MONGO_HOST:localhost}:${MONGO_PORT:27017}
 
 #Database:
 db1:
