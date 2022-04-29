@@ -1,32 +1,37 @@
-## Micronaut 3.4.2 Documentation
+# WebSevices_Labb2
 
-- [User Guide](https://docs.micronaut.io/3.4.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.4.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.4.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+## Soda (Oscar)
 
----
+### endpoints
 
-## Feature http-client documentation
+getall: localhost:8080/sodas
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+create: localhost:8080/sodas
 
-## Feature data-mongodb-async documentation
+###
 
-- [Micronaut Data MongoDB Async documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/#mongo)
+## Fish (Christian)
 
-- [https://docs.mongodb.com](https://docs.mongodb.com)
+### endpoints
 
-## Feature hibernate-validator documentation
+getall: localhost:8080/fishes
 
-- [Micronaut Hibernate Validator documentation](https://micronaut-projects.github.io/micronaut-hibernate-validator/latest/guide/index.html)
+create: localhost:8080/fishes
 
-## Feature tomcat-server documentation
+###
 
-- [Micronaut Tomcat Server documentation](https://micronaut-projects.github.io/micronaut-servlet/1.0.x/guide/index.html#tomcat)
+### Run command:
 
-## Feature graphql documentation
+```
+docker run -e MONGO_USERNAME:mongoadmin -e MONGO_PASSWORD:secret -e MONGO_HOST=mongodb -e MONGO_PORT=27017 -p 8080:8080 --network mongo-network webservices_labb2:latest
+```
 
-- [Micronaut GraphQL documentation](https://micronaut-projects.github.io/micronaut-graphql/latest/guide/index.html)
+```
+./mvnw package -Dpackaging=docker-native -Pgraalvm
+```
 
+###
 
+## Projektet gjort av:
+
+Oscar Eriksson Stjernfeldt & Christian Löfqvist
