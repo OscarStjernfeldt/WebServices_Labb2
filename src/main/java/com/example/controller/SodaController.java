@@ -1,25 +1,38 @@
 package com.example.controller;
 
 import com.example.entity.Soda;
-import com.example.service.SodaService;
+import com.example.repository.SodaRepository;
+import io.micronaut.core.annotation.NonNull;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import org.reactivestreams.Publisher;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-@Controller("/soda")
+import static io.micronaut.http.HttpStatus.CONFLICT;
+import static io.micronaut.http.HttpStatus.CREATED;
+
+@Controller("/sodas")
 public class SodaController {
 
-    private SodaService sodaService;
+    private final SodaRepository sodaService;
 
-    @Get("/getAll")
-    public List<Soda> getListOfSodas() {
-        return sodaService.getList();
+    SodaController(SodaRepository sodaService) {
+        this.sodaService = sodaService;
     }
 
-    @Post("/add")
-    public void addSoda() {
-        sodaService.add(new Soda("Coke"));
+    @Get
+    Publisher<Soda> list() {
+        return sodaService.list();
+    }
+
+    @Post
+    Mono<HttpStatus> save(@NonNull @NotNull @Valid Soda soda) {
+        return sodaService.save(soda)
+                .map(added -> added ? CREATED : CONFLICT);
     }
 }
